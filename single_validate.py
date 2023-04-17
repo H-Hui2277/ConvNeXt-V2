@@ -7,6 +7,17 @@ from models.convnextv2 import convnextv2_pico
 
 from engine_finetune import evaluate
 
+model_urls = {
+    'atto': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_atto_1k_224_ema.pt',
+    'femto': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_femto_1k_224_ema.pt',
+    'pico': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_pico_1k_224_ema.pt',
+    'nano': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_nano_1k_224_ema.pt',
+    'tiny': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_tiny_1k_224_ema.pt',
+    'base': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_base_1k_224_ema.pt',
+    'large': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_large_1k_224_ema.pt',
+    'huge': 'https://dl.fbaipublicfiles.com/convnext/convnextv2/im1k/convnextv2_huge_1k_224_ema.pt',
+}
+
 # Dataset
 args = object()
 args.data_set = 'IMNET'
@@ -27,7 +38,7 @@ data_loader_val = DataLoader(
 # Model
 device = torch.device('cuda:0')
 model = convnextv2_pico()
-checkpoint = model_zoo.load_url('', map_location='cpu')
+checkpoint = model_zoo.load_url(model_urls['pico'], map_location='cpu')
 model.load_state_dict(checkpoint['model'])
 model.to(device)
 
