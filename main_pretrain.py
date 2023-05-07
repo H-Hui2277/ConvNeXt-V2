@@ -32,16 +32,16 @@ from utils import str2bool
 
 def get_args_parser():
     parser = argparse.ArgumentParser('FCMAE pre-training', add_help=False)
-    parser.add_argument('--batch_size', default=64, type=int,
+    parser.add_argument('--batch_size', default=8, type=int,
                         help='Per GPU batch size')
-    parser.add_argument('--epochs', default=800, type=int)
+    parser.add_argument('--epochs', default=500, type=int)
     parser.add_argument('--warmup_epochs', type=int, default=40, metavar='N',
                         help='epochs to warmup LR')
     parser.add_argument('--update_freq', default=1, type=int,
                         help='gradient accumulation step')
     
     # Model parameters
-    parser.add_argument('--model', default='convnextv2_base', type=str, metavar='MODEL',
+    parser.add_argument('--model', default='convnextv2_tiny', type=str, metavar='MODEL',
                         help='Name of model to train')
     parser.add_argument('--input_size', default=224, type=int,
                         help='image input size')

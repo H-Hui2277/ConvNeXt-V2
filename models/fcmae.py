@@ -9,12 +9,6 @@
 import torch
 import torch.nn as nn
 
-from MinkowskiEngine import (
-    MinkowskiConvolution,
-    MinkowskiDepthwiseConvolution,
-    MinkowskiLinear,
-)
-
 from timm.models.layers import trunc_normal_
 from .convnextv2_sparse import SparseConvNeXtV2
 from .convnextv2 import Block
@@ -69,15 +63,6 @@ class FCMAE(nn.Module):
         self.apply(self._init_weights)
 
     def _init_weights(self, m):
-        if isinstance(m, MinkowskiConvolution):
-            trunc_normal_(m.kernel, std=.02)
-            nn.init.constant_(m.bias, 0)
-        if isinstance(m, MinkowskiDepthwiseConvolution):
-            trunc_normal_(m.kernel)
-            nn.init.constant_(m.bias, 0)
-        if isinstance(m, MinkowskiLinear):
-            trunc_normal_(m.linear.weight)
-            nn.init.constant_(m.linear.bias, 0)
         if isinstance(m, nn.Conv2d):
             w = m.weight.data
             trunc_normal_(w.view([w.shape[0], -1]))
