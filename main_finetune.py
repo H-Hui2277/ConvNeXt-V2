@@ -29,7 +29,7 @@ from engine_finetune import train_one_epoch, evaluate
 import utils
 from utils import NativeScalerWithGradNormCount as NativeScaler
 from utils import str2bool, remap_checkpoint_keys
-import models.convnextv2_crowd as convnextv2
+import models.convnextv2 as convnextv2
 
 def get_args_parser():
     parser = argparse.ArgumentParser('FCMAE fine-tuning', add_help=False)
